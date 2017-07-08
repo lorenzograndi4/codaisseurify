@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :songs, only: [:new, :create, :destroy]
   end
 
+  match '*path', to: redirect('/'), via: :get
+
 end
