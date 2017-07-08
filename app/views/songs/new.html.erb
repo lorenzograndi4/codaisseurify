@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <p>Add a new song to <%= @artist.name %>'s playlist:</p>
+  </div>
+
+  <div class="panel-body">
+    <%= form_for [@artist, @artist.songs.new] do |s| %>
+
+      <div class="form-group">
+       <label>Song name</label>
+       <%= s.text_field :name, placeholder: "Name", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label>Song year</label>
+        <%= s.number_field :year, placeholder: "Select year", class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= s.submit "Save", class: "btn btn-primary" %>
+      </div>
+
+    <% end %>
+    </div>
+</div>

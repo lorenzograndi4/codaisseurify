@@ -4,4 +4,6 @@
   <p><%= s.name %></p>
 <% end %>
 
+<%= link_to "Add new song", new_artist_song_path(@artist.id), class: "btn btn-secondary" %>
+<hr>
 <%= link_to "Back", artists_path, class: "btn btn-default" %>
