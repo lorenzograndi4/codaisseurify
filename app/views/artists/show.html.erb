@@ -1,0 +1,7 @@
+<h2><%= @artist.name %></h2>
+
+<% @artist.songs.each do |s| %>
+  <p><%= s.name %></p>
+<% end %>
+
+<%= link_to "Back", artists_path, class: "btn btn-default" %>

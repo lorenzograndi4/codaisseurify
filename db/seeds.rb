@@ -1,9 +1,9 @@
 Song.destroy_all
 Artist.destroy_all
 
-artist1 = Artist.create(name: "Luciano Pavarotti", bio: "I don't like taxes", genre: "opera")
-artist2 = Artist.create(name: "Andrea Bocelli", bio: "I wouldn't see why not", genre: "pop" )
-artist3 = Artist.create(name: "Maria Callas", bio: "Waht am I doing here?", genre: "opera")
+artist1 = Artist.create(name: "Luciano Pavarotti", bio: "I don't like taxes", genre: "opera", remote_image_url: "http://res.cloudinary.com/lorenzocloudinary/image/upload/v1499512852/codaisseurify/Pavarotti_srj4ai.jpg")
+artist2 = Artist.create(name: "Andrea Bocelli", bio: "I wouldn't see why not?", genre: "pop", remote_image_url: "http://res.cloudinary.com/lorenzocloudinary/image/upload/v1499512852/codaisseurify/Bocelli_cekl5o.jpg")
+artist3 = Artist.create(name: "Maria Callas", bio: "What am I doing here?", genre: "opera", remote_image_url: "http://res.cloudinary.com/lorenzocloudinary/image/upload/v1499512852/codaisseurify/Callas_a27cew.jpg")
 
 song1 = Song.create(name: "La Traviata", year: 1992, artist: artist1)
 song2 = Song.create(name: "Rigoletto", year: 1984, artist: artist1)
