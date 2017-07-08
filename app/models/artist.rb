@@ -1,3 +1,5 @@
 class Artist < ApplicationRecord
-  belongs_to :song
+  has_many :songs
+
+  validates :name, :bio, :genre, presence: true
 end
