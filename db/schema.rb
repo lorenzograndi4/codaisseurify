@@ -19,11 +19,9 @@ ActiveRecord::Schema.define(version: 20170708112409) do
     t.string "name"
     t.string "genre"
     t.text "bio"
-    t.bigint "song_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.index ["song_id"], name: "index_artists_on_song_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -33,10 +31,9 @@ ActiveRecord::Schema.define(version: 20170708112409) do
     t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "artist_id"
+    t.bigint "song_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
-  add_foreign_key "artists", "songs"
   add_foreign_key "songs", "artists"
 end

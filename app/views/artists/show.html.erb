@@ -3,7 +3,7 @@
 <% @artist.songs.each do |song| %>
   <h3><%= song.name %></h3>
   <div class="btn btn-secondary">
-    <%= link_to "[Delete]", @song, method: :delete, data: {confirm: "Are you really sure?"} %>
+    <%= link_to "[Delete]", artist_song_path(@artist.id, song.id), method: :delete, data: {confirm: "Are you really sure?"} %>
   </div>
 <% end %>
 <hr>

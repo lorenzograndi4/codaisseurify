@@ -4,7 +4,6 @@ class CreateArtists < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :genre
       t.text :bio
-      t.references :song, foreign_key: true
 
       t.timestamps
     end
