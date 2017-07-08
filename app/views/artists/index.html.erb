@@ -6,7 +6,7 @@
 
 <div class="container">
     <% @artists.each do |a| %>
-      <%= image_tag a.image %>
+      <div class="thumb"><%= image_tag a.image %></div>
       <p><%= link_to "#{a.name}", artist_path(a) %></p>
       <p>Famous quote: <i><%= a.bio %></i></p>
       <p>Music genre: <strong><%= a.genre.capitalize %></strong></p>
