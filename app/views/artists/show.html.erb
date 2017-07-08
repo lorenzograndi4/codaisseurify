@@ -9,6 +9,6 @@
 <hr>
 <%= link_to "Add new song", new_artist_song_path(@artist.id), class: "btn btn-secondary" %>
 <hr>
-<%= link_to "[Delete #{@artist.name}]", @artist, method: :delete, data: {confirm: "Are you really sure?"} %>
+<%= link_to "[Delete #{@artist.name}]", @artist, method: :delete, data: {confirm: "Are you really sure?", notice: "Song deleted!"} %>
 <hr>
 <%= link_to "Back", artists_path, class: "btn btn-default" %>

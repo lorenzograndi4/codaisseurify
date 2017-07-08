@@ -17,7 +17,7 @@ class SongsController < ApplicationController
 
   def destroy
     Song.find(params[:id]).destroy
-    redirect_to artist_path(@artist)
+    redirect_to artist_path(@artist), notice: "Song deleted!"
   end
 
   private
