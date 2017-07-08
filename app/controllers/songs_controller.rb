@@ -3,7 +3,6 @@ class SongsController < ApplicationController
 
   def new
     @song = @artist.songs.build
-    # @song.artist_id = params[:artist_id]
   end
 
   def create
@@ -20,7 +19,6 @@ class SongsController < ApplicationController
 
   def set_artist
     @artist = Artist.find(params[:artist_id])
-    # artist_id = params[:artist_id]
   end
 
   def allowed_song_params
