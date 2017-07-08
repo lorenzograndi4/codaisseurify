@@ -10,7 +10,7 @@
 
   <body>
 
-    <% if flash[:notice] || flash[:error] %>
+    <% if flash[:notice] %>
       <%= render 'shared/notices' %>
     <% end %>
     <%= yield %>
