@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170708112409) do
     t.string "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "song_id"
+    t.bigint "artist_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
