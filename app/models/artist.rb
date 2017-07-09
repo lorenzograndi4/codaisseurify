@@ -1,5 +1,6 @@
 class Artist < ApplicationRecord
   has_many :songs, dependent: :destroy
 
-  validates :name, :bio, :genre, presence: true
+  validates :name, presence: true
+  validates :bio, length: { maximum: 500 }
 end

@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Song, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:year) }
+    it { is_expected.to validate_presence_of(:artist) }
+  end
 end
