@@ -1,7 +1,45 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-img.thumb {
-  width: 300px;
-  height: 300px;
+img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+h1, h2 {
+  text-align: center;
+  padding: 50px;
+}
+
+.container {
+  max-width: 1940px;
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul.artist {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul.artist li {
+  background-color: #ECECEC;
+  width: 330px;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+@media screen and (max-width: 500px) {
+  /*header nav {
+    flex-direction: column;
+  }*/
+  header {
+    flex-direction: column;
+  }
 }
