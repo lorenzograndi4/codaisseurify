@@ -10,8 +10,8 @@ song2 = Song.create(name: "Rigoletto", year: 1984, artist: artist1)
 song3 = Song.create(name: "Madame Butterfly", year: 1979, artist: artist1)
 song4 = Song.create(name: "Tosca", year: 1966, artist: artist1)
 song5 = Song.create(name: "Time to say goodbye", year: 1999, artist: artist2)
-song6 = Song.create(name: Faker::Lorem.word, year: Faker::Number.number(4), artist: artist3)
-song7 = Song.create(name: Faker::Lorem.word, year: Faker::Number.number(4), artist: artist3)
-song8 = Song.create(name: Faker::Lorem.word, year: Faker::Number.number(4), artist: artist3)
+# song6 = Song.create(name: Faker::Lorem.word, year: Faker::Number.number(4), artist: artist3)
+# song7 = Song.create(name: Faker::Lorem.word, year: Faker::Number.number(4), artist: artist3)
+# song8 = Song.create(name: Faker::Lorem.word, year: Faker::Number.number(4), artist: artist3)
 
 puts "#{Artist.all.count} artists and #{Song.all.count} songs were created."
