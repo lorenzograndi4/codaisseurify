@@ -1,25 +1,51 @@
 function createSong(name, year) {
+  var newSong = { name: name, year: year };
+  var artistId = $('#submit-new-song').parent().attr('id');
 
-  var songBlock = $("<div class='song-block'></div>");
+  $.ajax({
+    type: "POST",
+    url: "/api/artists/" + artistId + "/songs.json",
+    data: JSON.stringify({
+        song: newSong
+    }),
+    contentType: "application/json",
+    dataType: "json"
+  })
+  .done(function(data) {
+    console.log(data);
+    var songBlock = $("<div class='song-block'></div>");
 
-  var titleBlock = $("<h3 class='song-title'></h3>");
-  titleBlock.html(name);
+    var titleBlock = $("<h3 class='song-title'></h3>");
+    titleBlock.html(name);
 
-  var deleteLink = $("<a href='#' class='delete-song'></a>");
-  deleteLink.html("[New delete link]");
+    var deleteLink = $("<a href='#' class='delete-song'></a>");
+    deleteLink.html("[New delete link]");
 
-  var detailBlock = $("<p></p>");
-  detailBlock.html("Year: " + year + " ");
+    var detailBlock = $("<p></p>");
+    detailBlock.html("Year: " + year + " ");
 
-  songBlock.append(titleBlock);
-  detailBlock.append(deleteLink);
-  songBlock.append(detailBlock);
+    songBlock.append(titleBlock);
+    detailBlock.append(deleteLink);
+    songBlock.append(detailBlock);
 
-  $("#songslist").append(songBlock);
+    $("#songs-list").append(songBlock);
+  })
+  .fail(function(error) {
+    var errorHelpBlock = $('<span class="help-block" id="error-message" style="color: red;"></span>')
+      .text('Both fields are required')
+    console.log(error);
+    $("#new-song-form")
+      .prepend(errorHelpBlock);
+  });
+}
+
+function resetErrors() {
+    $("#error-message").remove();
 }
 
 function submitSong(event) {
   event.preventDefault();
+  resetErrors();
   var name = $("#new-song-name").val();
   var year = $("#new-song-year").val();
   createSong(name, year);
