@@ -6,7 +6,7 @@
 </h2>
 
 <div class="container col-md-4">
-  <%= image_tag @artist.image %>
+  <%= image_tag @artist.image unless @artist.image.nil? %>
 </div>
 
 <div class="container col-md-4" id="songslist">
