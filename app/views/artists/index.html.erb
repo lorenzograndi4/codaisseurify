@@ -8,7 +8,9 @@
   <ul class="artist">
     <% @artists.each do |a| %>
       <li>
-        <%= image_tag a.image %>
+        <%= link_to artist_path(a) do %>
+          <%= image_tag a.image %>
+        <% end %>
         <h3><%= link_to "#{a.name}", artist_path(a) %></h3>
         <p>Famous quote: <i><%= a.bio %></i></p>
         <p>Music genre: <strong><%= a.genre.capitalize %></strong></p>
