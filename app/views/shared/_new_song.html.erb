@@ -1,0 +1,18 @@
+<div class="panel-body">
+  <%= form_for [@artist, @artist.songs.new] do |s| %>
+
+    <div id="new-song-name" class="new-song-form">
+     <!-- <label>Song name</label> -->
+     <%= s.text_field :name, placeholder: "Name", class: "form-control" %>
+    </div>
+
+    <div id="new-song-year" class="new-song-form">
+      <!-- <label>Song year</label> -->
+      <%= s.number_field :year, placeholder: "Year", class: "form-control" %>
+    </div>
+
+    <div id="submit-new-song" class="new-song-form">
+      <%= s.submit "Save", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

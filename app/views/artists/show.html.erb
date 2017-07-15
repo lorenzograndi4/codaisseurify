@@ -5,7 +5,11 @@
   class: "btn btn-secondary", data: {confirm: "Are you really sure?", notice: "Artist deleted!"} %>
 </h2>
 
-<div class="container">
+<div class="container col-md-4">
+  <%= image_tag @artist.image %>
+</div>
+
+<div class="container col-md-4">
   <% @artist.songs.each do |song| %>
     <h3><%= song.name %></h3>
     <p>Year: <%= song.year %>
@@ -14,7 +18,9 @@
     </p>
   <% end %>
 </div>
-<hr>
-<div class="container">
-  <%= link_to "Add new song", new_artist_song_path(@artist.id), class: "btn btn-primary" %>
+
+<div class="container col-md-4">
+  <p>Add a new song for <%= @artist.name %>:</p>
+  <!-- <%= link_to "Add new song", new_artist_song_path(@artist.id), class: "btn btn-primary" %> -->
+  <%= render 'shared/new_song' %>
 </div>
