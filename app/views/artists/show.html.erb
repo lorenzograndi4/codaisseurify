@@ -1,18 +1,20 @@
-<h2><%= @artist.name %><%= link_to "Back", artists_path, class: "btn btn-secondary" %>
+<h2>
+  <%= link_to "Back", artists_path, class: "btn btn-secondary" %>
+  <%= @artist.name %>
+  <%= link_to "Delete #{@artist.name}", @artist, method: :delete,
+  class: "btn btn-secondary", data: {confirm: "Are you really sure?", notice: "Artist deleted!"} %>
 </h2>
 
 <div class="container">
   <% @artist.songs.each do |song| %>
     <h3><%= song.name %></h3>
     <p>Year: <%= song.year %>
-      <%= link_to "[Delete song]", artist_song_path(@artist.id, song.id), method: :delete, data: {confirm: "Are you really sure?"} %>
+      <%= link_to "[Delete song]", artist_song_path(@artist.id, song.id),
+      method: :delete, data: {confirm: "Are you really sure?"} %>
     </p>
   <% end %>
 </div>
 <hr>
 <div class="container">
   <%= link_to "Add new song", new_artist_song_path(@artist.id), class: "btn btn-primary" %>
-  <div class="btn btn-warning">
-    <%= link_to "[Delete #{@artist.name}]", @artist, method: :delete, data: {confirm: "Are you really sure?", notice: "Song deleted!"} %>
-  </div>
 </div>
