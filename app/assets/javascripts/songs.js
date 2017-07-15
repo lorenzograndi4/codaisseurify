@@ -29,11 +29,23 @@ function createSong(name, year) {
     songBlock.append(detailBlock);
 
     $("#songs-list").append(songBlock);
+  })
+  .fail(function(error) {
+    var errorHelpBlock = $('<span class="help-block" id="error-message" style="color: red;"></span>')
+      .text('Both fields are required')
+    console.log(error);
+    $("#new-song-form")
+      .prepend(errorHelpBlock);
   });
+}
+
+function resetErrors() {
+    $("#error-message").remove();
 }
 
 function submitSong(event) {
   event.preventDefault();
+  resetErrors();
   var name = $("#new-song-name").val();
   var year = $("#new-song-year").val();
   createSong(name, year);
