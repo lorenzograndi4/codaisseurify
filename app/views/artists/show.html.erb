@@ -15,7 +15,7 @@
     <h3 class="song-title"><%= song.name %></h3>
     <p>Year: <%= song.year %>
       <%= link_to "[Delete song]", artist_song_path(@artist.id, song.id), id: "remove-song-#{song.id}", method: :delete, data: {confirm: "Are you really sure?"} %>
-      <a href="#" class="delete-song">[New delete link]</a>
+      <a href="#" class="delete-song" id="delete-song-<%= song.id %>">[New delete link]</a>
     </p>
   </div>
   <% end %>
