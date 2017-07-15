@@ -11,7 +11,7 @@
       <%= s.number_field :year, placeholder: "Year", class: "form-control", id: "new-song-year" %>
     </div>
 
-    <div class="new-song-form">
+    <div class="new-song-form" id="<%= @artist.id %>">
       <%= s.submit "Save", class: "btn btn-primary", id: "submit-new-song", data: { disable_with: false } %>
     </div>
   <% end %>

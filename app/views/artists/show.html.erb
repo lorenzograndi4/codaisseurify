@@ -9,7 +9,7 @@
   <%= image_tag @artist.image unless @artist.image.nil? %>
 </div>
 
-<div class="container col-md-4" id="songslist">
+<div class="container col-md-4" id="songs-list">
   <% @artist.songs.each do |song| %>
   <div class="song-block" id="song-<%= song.id %>">
     <h3 class="song-title"><%= song.name %></h3>
@@ -26,5 +26,5 @@
   <hr>
   <p>Add a new song for <%= @artist.name %>:</p>
   <!-- <%= link_to "Add new song", new_artist_song_path(@artist.id), class: "btn btn-primary" %> -->
-  <%= render 'shared/new_song' %>
+  <%= render 'shared/new_song', song: @song %>
 </div>
