@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     resources :songs, only: [:new, :create, :destroy]
   end
 
+  namespace :api do
+    resources :artists, only: [:show] do
+      resources :songs, only: [:new, :create, :destroy]
+    end
+  end
+
   match '*path', to: redirect('/'), via: :get
 
 end
