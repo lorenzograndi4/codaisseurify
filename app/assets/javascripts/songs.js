@@ -1,3 +1,15 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+function removeSong(event) {
+  event.preventDefault();
+  $(this).parent().parent().remove()
+}
+
+function removeAllSongs(event) {
+  event.preventDefault();
+  $.when($(".song-block").remove())
+}
+
+$(document).ready(function() {
+  // $("form").bind('submit', submitSong);
+  $(".delete-song").bind('click', removeSong);
+  $("#remove-all").bind('click', removeAllSongs);
+});
