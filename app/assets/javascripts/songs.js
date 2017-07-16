@@ -71,21 +71,31 @@ function removeSong(event) {
   .done(function(data) {
     var removeMsg = $('<p class="help-block" id="error-message" style="color: green;"></p>')
       .text('Song removed!');
-    // var songId = data.id;
     console.log(data);
     $('#songs-list').prepend(removeMsg);
-    $('div[id="'+songId+'"]').remove();
+    $('div[id="'+songId+'"]').remove(); // UGLYYYYY
   });
 }
 
-
-
-
-
+// I'm not breaking my removeSong function to make this one work.
+// Repeating myself with a new ajax call -> refactoring needed
 
 function removeAllSongs(event) {
   event.preventDefault();
-  $.when($(".song-block").remove())
+  $.each($(".song-block"), function(index, block) {
+    var songId = $(block).attr('id');
+    var artistId = $('#submit-new-song').parent().attr('id');
+    $.ajax({
+      type: "DELETE",
+      url: artistId + '/api/songs/' + songId + '.json',
+      contentType: "application/json",
+      dataType: "json"
+    })
+    .done(function(data) {
+      console.log(data);
+      $.when($(".song-block").remove())
+    })
+  });
 }
 
 $(document).ready(function() {
