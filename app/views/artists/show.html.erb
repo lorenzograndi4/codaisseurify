@@ -4,6 +4,7 @@
 </h2>
 
 <div class="container col-md-4 artist">
+  <!-- The unless here is only to make a test pass -->
   <%= image_tag @artist.image unless @artist.image.nil? %>
   <%= link_to "[Delete #{@artist.name}]", @artist, method: :delete,
   class: "btn btn-secondary", data: {confirm: "Are you really sure?", notice: "Artist deleted!"} %>
