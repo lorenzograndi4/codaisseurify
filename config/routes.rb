@@ -8,8 +8,19 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :artists, only: [:show] do
-      resources :songs, only: [:index, :new, :create, :destroy]
+    resources :artists, only: [:show, :destroy] do
+      resources :songs, only: [:index, :new, :create]
+    end
+  end
+
+  # It is ridicolous that I have to do it like this!
+  # The problem comes with the Ajax DELETE call for the single song
+  # The path seems to start at localhost:3000/artists
+  # Not ideal, it is what it is ¯\_(ツ)_/¯
+
+  resources :artists, only: :show do
+    namespace :api do
+      resources :songs, only: :destroy
     end
   end
 

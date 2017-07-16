@@ -13,28 +13,31 @@ function createSong(name, year) {
   })
   .done(function(data) {
     console.log(data);
-    var songBlock = $("<div class='song-block'></div>");
+    var songId = data.id
+    var songBlock = $('<div class="song-block"></div>')
+      .attr('id', songId);
 
-    var titleBlock = $("<h3 class='song-title'></h3>");
-    titleBlock.text(name);
+    var titleBlock = $('<h3 class="song-title"></h3>')
+      .text(name);
 
-    var deleteLink = $("<a href='#' class='delete-song'></a>");
-    deleteLink.text("[New delete link]");
+    var deleteLink = $('<a href="#" class="delete-song"></a>')
+      .attr('song-id', songId)
+      .text('[New delete link]');
 
-    var detailBlock = $("<p></p>");
-    detailBlock.text("Year: " + year + " ");
+    var detailBlock = $('<p></p>');
+    detailBlock.text('Year: ' + year + ' ');
 
     songBlock.append(titleBlock);
     detailBlock.append(deleteLink);
     songBlock.append(detailBlock);
 
-    $("#songs-list").append(songBlock);
+    $('#songs-list').append(songBlock);
   })
   .fail(function(error) {
     var errorHelpBlock = $('<span class="help-block" id="error-message" style="color: red;"></span>')
       .text('Both fields are required')
     console.log(error);
-    $("#new-song-form")
+    $('#new-song-form')
       .prepend(errorHelpBlock);
   });
 }
@@ -55,8 +58,30 @@ function submitSong(event) {
 
 function removeSong(event) {
   event.preventDefault();
-  $(this).parent().parent().remove()
+  resetErrors();
+  var artistId = $('#submit-new-song').parent().attr('id');
+  var songId = $(this).attr('song-id');
+
+  $.ajax({
+    type: "DELETE",
+    url: artistId + '/api/songs/' + songId + '.json',
+    contentType: "application/json",
+    dataType: "json"
+  })
+  .done(function(data) {
+    var removeMsg = $('<p class="help-block" id="error-message" style="color: green;"></p>')
+      .text('Song removed!');
+    // var songId = data.id;
+    console.log(data);
+    $('#songs-list').prepend(removeMsg);
+    $('div[id="'+songId+'"]').remove();
+  });
 }
+
+
+
+
+
 
 function removeAllSongs(event) {
   event.preventDefault();

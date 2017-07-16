@@ -1,6 +1,6 @@
 <h2>
-  <%= link_to "Back", artists_path, class: "btn btn-secondary" %>
   <%= @artist.name %>
+  <%= link_to "Back", artists_path, class: "btn btn-secondary" %>
 </h2>
 
 <div class="container col-md-4 artist">
@@ -12,11 +12,11 @@
 
 <div class="container col-md-4" id="songs-list">
   <% @artist.songs.each do |song| %>
-  <div class="song-block" id="song-<%= song.id %>">
+  <div class="song-block" id="<%= song.id %>">
     <h3 class="song-title"><%= song.name %></h3>
     <p>Year: <%= song.year %>
       <%= link_to "[Delete song]", artist_song_path(@artist.id, song.id), id: "remove-song-#{song.id}", method: :delete, data: {confirm: "Are you really sure?"} %>
-      <a href="#" class="delete-song" id="delete-song-<%= song.id %>">[New delete link]</a>
+      <a href="#" class="delete-song" song-id="<%= song.id %>">[New delete link]</a>
     </p>
   </div>
   <% end %>
