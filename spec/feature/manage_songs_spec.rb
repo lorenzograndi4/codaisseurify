@@ -14,14 +14,19 @@ feature 'Manage songs', js: true do
   scenario 'add a new song to artist' do
     fill_and_submit
     expect(page).to have_content('Random song for testing', '12345')
+
+    # testing if the new song shows up again after refreshing the page
+    visit artist_path(artist.id)
+    expect(page).to have_content('Random song for testing', '12345')
   end
 
-  # this does not work yet bc jquery songs do not create an id 
-  # scenario 'delete a song' do
-  #   fill_and_submit
-  #   click_link('delete-song-1')
-  #   expect(page).not_to have_content('Random song for testing', '12345')
-  # end
+  scenario 'delete a song' do
+    fill_and_submit
+
+    visit artist_path(artist.id) # Refresh the page bc of issue
+    click_link('[New delete link]')
+    expect(page).not_to have_content('Random song for testing', '12345')
+  end
 
   scenario 'delete all songs' do
     fill_and_submit

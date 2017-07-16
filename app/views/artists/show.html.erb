@@ -1,28 +1,30 @@
 <h2>
-  <%= link_to "Back", artists_path, class: "btn btn-secondary" %>
   <%= @artist.name %>
-  <%= link_to "Delete #{@artist.name}", @artist, method: :delete,
-  class: "btn btn-secondary", data: {confirm: "Are you really sure?", notice: "Artist deleted!"} %>
+  <%= link_to "Back", artists_path, class: "btn btn-secondary" %>
 </h2>
 
-<div class="container col-md-4">
+<div class="container col-md-4 artist">
+  <!-- The unless here is only to make a test pass -->
   <%= image_tag @artist.image unless @artist.image.nil? %>
+  <%= link_to "[Delete #{@artist.name}]", @artist, method: :delete,
+  class: "btn btn-secondary", data: {confirm: "Are you really sure?", notice: "Artist deleted!"} %>
+
 </div>
 
 <div class="container col-md-4" id="songs-list">
   <% @artist.songs.each do |song| %>
-  <div class="song-block" id="song-<%= song.id %>">
+  <div class="song-block" id="<%= song.id %>">
     <h3 class="song-title"><%= song.name %></h3>
     <p>Year: <%= song.year %>
       <%= link_to "[Delete song]", artist_song_path(@artist.id, song.id), id: "remove-song-#{song.id}", method: :delete, data: {confirm: "Are you really sure?"} %>
-      <a href="#" class="delete-song" id="delete-song-<%= song.id %>">[New delete link]</a>
+      <a href="#" class="delete-song" song-id="<%= song.id %>">[New delete link]</a>
     </p>
   </div>
   <% end %>
 </div>
 
 <div class="container col-md-4">
-  <a href="#" id="delete-all"> Delete all songs for <%= @artist.name %></a>
+  <a href="#" id="delete-all"> [Delete all songs for <%= @artist.name %>]</a>
   <hr>
   <p>Add a new song for <%= @artist.name %>:</p>
   <!-- <%= link_to "Add new song", new_artist_song_path(@artist.id), class: "btn btn-primary" %> -->

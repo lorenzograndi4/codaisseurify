@@ -13,28 +13,36 @@ function createSong(name, year) {
   })
   .done(function(data) {
     console.log(data);
-    var songBlock = $("<div class='song-block'></div>");
+    var addMsg = $('<p class="help-block" id="error-message" style="color: green;"></p>')
+      .text('New song added');
+    var songId = data.id
+    var songBlock = $('<div class="song-block"></div>')
+      .attr('id', songId);
 
-    var titleBlock = $("<h3 class='song-title'></h3>");
-    titleBlock.html(name);
+    var titleBlock = $('<h3 class="song-title"></h3>')
+      .text(name);
 
-    var deleteLink = $("<a href='#' class='delete-song'></a>");
-    deleteLink.html("[New delete link]");
+    var deleteLink = $('<a href="#" class="delete-song"></a>')
+      .attr('song-id', songId)
+      .text('[New delete link]');
 
-    var detailBlock = $("<p></p>");
-    detailBlock.html("Year: " + year + " ");
+    var detailBlock = $('<p></p>');
+    detailBlock.text('Year: ' + year + ' ');
 
     songBlock.append(titleBlock);
     detailBlock.append(deleteLink);
     songBlock.append(detailBlock);
 
-    $("#songs-list").append(songBlock);
+    $('#songs-list').prepend(songBlock);
+
+    resetErrors();
+    $('#songs-list').prepend(addMsg);
   })
   .fail(function(error) {
     var errorHelpBlock = $('<span class="help-block" id="error-message" style="color: red;"></span>')
       .text('Both fields are required')
     console.log(error);
-    $("#new-song-form")
+    $('#new-song-form')
       .prepend(errorHelpBlock);
   });
 }
@@ -55,12 +63,50 @@ function submitSong(event) {
 
 function removeSong(event) {
   event.preventDefault();
-  $(this).parent().parent().remove()
+  resetErrors();
+  var artistId = $('#submit-new-song').parent().attr('id');
+  var songId = $(this).attr('song-id');
+
+  $.ajax({
+    type: "DELETE",
+    url: artistId + '/api/songs/' + songId + '.json',
+    contentType: "application/json",
+    dataType: "json"
+  })
+  .done(function(data) {
+    var removeMsg = $('<p class="help-block" id="error-message" style="color: green;"></p>')
+      .text('Song removed!');
+    console.log(data);
+    $('#songs-list').prepend(removeMsg);
+    $('div[id="'+songId+'"]').remove(); // UGLYYYYY
+  });
 }
+
+// I'm not breaking my removeSong function to make this one work.
+// So I'm repeating myself with a new ajax call -> refactoring needed
 
 function removeAllSongs(event) {
   event.preventDefault();
-  $.when($(".song-block").remove())
+  $.each($(".song-block"), function(index, block) {
+    var songId = $(block).attr('id');
+    var artistId = $('#submit-new-song').parent().attr('id');
+    $.ajax({
+      type: "DELETE",
+      url: artistId + '/api/songs/' + songId + '.json',
+      contentType: "application/json",
+      dataType: "json"
+    })
+    .done(function(data) {
+      console.log(data);
+    })
+    .done(function(data) {
+      var removeAll = $('<p class="help-block" id="error-message" style="color: green;"></p>')
+        .text('All songs removed OMG!');
+      $.when($(".song-block").remove());
+      resetErrors();
+      $('#songs-list').prepend(removeAll); // Unnecessary to print this every time
+    })
+  });
 }
 
 $(document).ready(function() {
