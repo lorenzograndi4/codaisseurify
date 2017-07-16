@@ -16,13 +16,13 @@ function createSong(name, year) {
     var songBlock = $("<div class='song-block'></div>");
 
     var titleBlock = $("<h3 class='song-title'></h3>");
-    titleBlock.html(name);
+    titleBlock.text(name);
 
     var deleteLink = $("<a href='#' class='delete-song'></a>");
-    deleteLink.html("[New delete link]");
+    deleteLink.text("[New delete link]");
 
     var detailBlock = $("<p></p>");
-    detailBlock.html("Year: " + year + " ");
+    detailBlock.text("Year: " + year + " ");
 
     songBlock.append(titleBlock);
     detailBlock.append(deleteLink);
