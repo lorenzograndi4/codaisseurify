@@ -78,7 +78,7 @@ function removeSong(event) {
 }
 
 // I'm not breaking my removeSong function to make this one work.
-// Repeating myself with a new ajax call -> refactoring needed
+// So I'm repeating myself with a new ajax call -> refactoring needed
 
 function removeAllSongs(event) {
   event.preventDefault();
@@ -93,7 +93,13 @@ function removeAllSongs(event) {
     })
     .done(function(data) {
       console.log(data);
-      $.when($(".song-block").remove())
+    })
+    .done(function(data) {
+      var removeAll = $('<p class="help-block" id="error-message" style="color: green;"></p>')
+        .text('All songs removed OMG!');
+      $.when($(".song-block").remove());
+      resetErrors();
+      $('#songs-list').prepend(removeAll); // Unnecessary to print this every time
     })
   });
 }
