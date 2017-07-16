@@ -13,6 +13,8 @@ function createSong(name, year) {
   })
   .done(function(data) {
     console.log(data);
+    var addMsg = $('<p class="help-block" id="error-message" style="color: green;"></p>')
+      .text('New song added');
     var songId = data.id
     var songBlock = $('<div class="song-block"></div>')
       .attr('id', songId);
@@ -31,7 +33,10 @@ function createSong(name, year) {
     detailBlock.append(deleteLink);
     songBlock.append(detailBlock);
 
-    $('#songs-list').append(songBlock);
+    $('#songs-list').prepend(songBlock);
+
+    resetErrors();
+    $('#songs-list').prepend(addMsg);
   })
   .fail(function(error) {
     var errorHelpBlock = $('<span class="help-block" id="error-message" style="color: red;"></span>')
