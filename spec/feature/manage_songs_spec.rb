@@ -22,8 +22,7 @@ feature 'Manage songs', js: true do
 
   scenario 'delete a song' do
     fill_and_submit
-
-    visit artist_path(artist.id) # Refresh the page bc of issue
+    visit artist_path(artist.id) # FIX bug then remove this line
     click_link('[New delete link]')
     expect(page).not_to have_content('Random song for testing', '12345')
   end

@@ -1,3 +1,5 @@
+'use strict';
+
 function createSong(name, year) {
   var newSong = { name: name, year: year };
   var artistId = $('#submit-new-song').parent().attr('id');
@@ -36,6 +38,8 @@ function createSong(name, year) {
     $('#songs-list').prepend(songBlock);
 
     resetErrors();
+    var addMsg = $('<p class="help-block" id="error-message" style="color: green;"></p>')
+      .text('New song added');
     $('#songs-list').prepend(addMsg);
   })
   .fail(function(error) {
@@ -111,6 +115,7 @@ function removeAllSongs(event) {
 
 $(document).ready(function() {
   $("form").bind('submit', submitSong);
+  // this class does not exist for a new song when you load the file. is this the issue?
   $(".delete-song").bind('click', removeSong);
   $("#delete-all").bind('click', removeAllSongs);
 });
