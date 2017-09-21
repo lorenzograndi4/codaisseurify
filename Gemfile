@@ -37,6 +37,7 @@ gem 'cloudinary', '1.2.3'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'jquery-turbolinks'
+gem 'sidekiq'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
